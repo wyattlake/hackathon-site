@@ -10,27 +10,27 @@ const Forum: NextPage = () => {
                 <title>Wonder</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <h1>Forum</h1>
-            <div className="body">
-                <div className={styles.comment}>
-                    <div className={styles.commentInfo}>
-                        <p>10 likes</p>
-                        <p>4 answers</p>
-                        <p>3 views</p>
-                    </div>
-                    <div className={styles.commentMain}>
-                        <div className={styles.commentContent}>
-                            <h2>defribrillator</h2>
-                            <p>What is the derivative of a derivative???</p>
+            <main className={styles.main}>
+                <h1>Forum</h1>
+                <div className="body">
+                    <div className={styles.comment}>
+                        <div className={styles.commentInfo}>
+                            <p>10 likes</p>
+                            <p>4 answers</p>
+                            <p>3 views</p>
                         </div>
-                        <div className={styles.commentProfile}>
-                            <p className={styles.commentAuthor}>Ryan Cheng</p>
-                            <p>2 karma</p>
+                        <div className={styles.commentMain}>
+                            <div className={styles.commentContent}>
+                                <h2>defribrillator</h2>
+                                <p>What is the derivative of a derivative???</p>
+                            </div>
+                            <div className={styles.commentProfile}>
+                                <p className={styles.commentAuthor}>Ryan Cheng</p>
+                                <p>2 karma</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <main className={styles.main}>
             </main>
         </div >
     )

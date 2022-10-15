@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 100%;
+}
+
+.navbar > * {
+    color: #503453;
+    letter-spacing: 1px;
+    margin: 0px 30px;
+    font-size: 14px;
+}
+
+.logo {
+    margin-right: 40px;
+}
