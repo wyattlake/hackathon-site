@@ -6,10 +6,10 @@ import Typewriter from "typewriter-effect";
 import React from "react";
 import { ParallaxElement } from "../components/ParallaxElement";
 import { Navbar } from "../components/Navbar";
+import App from "next/app";
 
 const Home: NextPage = () => {
     const mousePosition: { x: number; y: number } = useMousePosition();
-
     return (
         <div className={styles.container}>
             <Head>
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.svg" />
             </Head>
             <main className={styles.main}>
-                <Navbar style={{ position: "absolute", top: 0 }} />
+                <Navbar />
                 <div className={styles.parallax}>
                     <ParallaxElement
                         image={

@@ -2,6 +2,7 @@ import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
 import { HTMLProps } from "react";
 import Link from "next/link";
+import React from "react";
 
 type NavbarProps = HTMLProps<HTMLDivElement>;
 

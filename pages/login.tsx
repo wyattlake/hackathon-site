@@ -3,6 +3,7 @@ import { Navbar } from "../components/Navbar";
 import styles from "../styles/Login.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Head from "next/head";
+import { postFileFromServer } from "./utils";
 
 type Inputs = {
     username: string;
@@ -17,7 +18,27 @@ const Login: NextPage = () => {
         formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        let objAccount = {
+            username: data.username,
+            password: data.password,
+        };
+
+        let jsonAccount = JSON.stringify(objAccount);
+
+        postFileFromServer(
+            "https://jakehenryparker.com/Hackathon/hackathon.php",
+            "login=" + encodeURIComponent(jsonAccount),
+            (data: string) => {
+                let parsedData: { id: string; karma: string } =
+                    JSON.parse(data);
+                localStorage.setItem("id", parsedData.id);
+                localStorage.setItem("karma", parsedData.karma);
+                localStorage.setItem("username", objAccount.username);
+                localStorage.setItem("password", objAccount.password);
+            }
+        );
+    };
 
     return (
         <div className={styles.container}>
