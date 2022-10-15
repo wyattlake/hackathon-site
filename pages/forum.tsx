@@ -5,6 +5,7 @@ import { CommentSmall } from "../components/CommentSmall";
 import { Navbar } from "../components/Navbar";
 import styles from "../styles/Forum.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { ParallaxElement } from "../components/ParallaxElement";
 
 type Inputs = {
     query: string;
@@ -27,6 +28,15 @@ const Forum: NextPage = () => {
             </Head>
             <main className={styles.main}>
                 <Navbar style={{ position: "absolute", top: 0 }} />
+                <div
+                    style={{
+                        position: "absolute",
+                        bottom: -250,
+                        right: -100,
+                    }}
+                >
+                    <Image src="/orbit4.svg" alt="" width={500} height={500} />
+                </div>
                 <div className={styles.mainSection}>
                     <div className={styles.pageTitle}>
                         <h1 className={styles.titleGradient}>Search</h1>
