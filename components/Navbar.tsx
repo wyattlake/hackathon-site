@@ -13,8 +13,12 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
                     <Image src="/logo.svg" alt="" width={130} height={50} />
                 </Link>
             </div>
-            <p>SIGN&nbsp;UP</p>
-            <p>LOGIN</p>
+            <Link href="/signup">
+                <a>SIGN&nbsp;UP</a>
+            </Link>
+            <Link href="/login">
+                <a>LOGIN</a>
+            </Link>
         </div>
     );
 };

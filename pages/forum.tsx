@@ -18,7 +18,9 @@ const Forum: NextPage = () => {
         watch,
         formState: { errors },
     } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        console.log(data);
+    };
 
     return (
         <div className={styles.container}>
