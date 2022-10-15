@@ -28,6 +28,9 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
             <Link href="/login">
                 <a>LOGIN</a>
             </Link>
+            <Link href="/primelesson">
+                <a>LESSONS</a>
+            </Link>
         </div>
     );
 };

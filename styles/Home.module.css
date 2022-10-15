@@ -186,3 +186,53 @@
 .parallaxItem > img {
     margin: 0px;
 }
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.loginForm > * {
+    margin: 10px;
+}
+
+.textinput {
+    padding: 10px;
+    border-radius: 15px;
+    border: 1.5px solid #e4d0b2;
+    background: #fff7eb;
+    width: 100%;
+    margin-right: 30px;
+}
+
+.inputfields {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    width: 100%;
+    flex-direction: column;
+    top: 35%;
+}
+.leftjustified{
+    width: 50%;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-left: 40px;
+    margin-bottom: 15px;
+    width: 50%;
+    height: 50%;
+}
+.submitbutton {
+        display: flex;
+        align-items: left;
+        justify-content: left;
+        margin-left: 40px;
+        margin-bottom: 15px;
+        width: 100%;
+        height: 100%;
+        margin-left: 15px;
+}
