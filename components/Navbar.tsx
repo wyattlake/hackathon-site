@@ -7,10 +7,19 @@ import React from "react";
 type NavbarProps = HTMLProps<HTMLDivElement>;
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
+    const getHref = () => {
+        if (typeof window !== "undefined") {
+            console.log("hello", localStorage.getItem("id"));
+            return localStorage.getItem("id") ? "/forum" : "/";
+        } else {
+            return "/";
+        }
+    };
+
     return (
         <div {...props} className={styles.navbar}>
             <div className={styles.logo}>
-                <Link href="/">
+                <Link href={getHref()}>
                     <Image src="/logo.svg" alt="" width={130} height={50} />
                 </Link>
             </div>

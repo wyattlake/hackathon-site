@@ -4,14 +4,14 @@ import styles from "../styles/Login.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Head from "next/head";
 import { postFileFromServer } from "../misc/utils";
-import router from "next/router";
 
 type Inputs = {
-    username: string;
-    password: string;
+    title: string;
+    content: string;
+    tags: string;
 };
 
-const Login: NextPage = () => {
+const Question: NextPage = () => {
     const {
         register,
         handleSubmit,
@@ -20,27 +20,24 @@ const Login: NextPage = () => {
     } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        let objAccount = {
-            username: data.username,
-            password: data.password,
+        let objData = {
+            uuid: localStorage.getItem("id"),
+            dentry: data.content,
+            tags: data.tags,
+            title: data.title,
+            prev: 0,
+            parent: 0,
         };
 
-        let jsonAccount = JSON.stringify(objAccount);
+        let jsonData = JSON.stringify(objData);
 
         postFileFromServer(
             "https://jakehenryparker.com/Hackathon/hackathon.php",
-            "login=" + encodeURIComponent(jsonAccount),
-            (data: string) => {
-                let parsedData: { id: string; karma: string } =
-                    JSON.parse(data);
-                localStorage.setItem("id", parsedData.id);
-                localStorage.setItem("karma", parsedData.karma);
-                localStorage.setItem("username", objAccount.username);
-                localStorage.setItem("password", objAccount.password);
+            "postComment=" + encodeURIComponent(jsonData),
+            (sent: boolean) => {
+                console.log(sent);
             }
         );
-
-        router.push("/forum");
     };
 
     return (
@@ -51,20 +48,26 @@ const Login: NextPage = () => {
             </Head>
             <Navbar />
             <div className={styles.body}>
-                <h1>Login</h1>
+                <h1>Pose a Question</h1>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className={styles.loginForm}
                 >
                     <input
-                        placeholder="Username"
-                        {...register("username", { required: true })}
+                        placeholder="Question"
+                        maxLength={125}
+                        {...register("title", { required: true })}
                     />
+                    {errors.title && <span>This field is required</span>}
+                    <textarea
+                        placeholder="More information"
+                        {...register("content", { required: true })}
+                    />
+                    {errors.content && <span>This field is required</span>}
                     <input
-                        placeholder="Password"
-                        {...register("password", { required: true })}
+                        placeholder="Add tags so other users can find your post"
+                        {...register("tags", { required: true })}
                     />
-                    {errors.password && <span>This field is required</span>}
 
                     <input type="submit" />
                 </form>
@@ -73,4 +76,4 @@ const Login: NextPage = () => {
     );
 };
 
-export default Login;
+export default Question;

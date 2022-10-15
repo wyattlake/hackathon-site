@@ -7,9 +7,17 @@ import React from "react";
 import { ParallaxElement } from "../components/ParallaxElement";
 import { Navbar } from "../components/Navbar";
 import App from "next/app";
+import router from "next/router";
 
 const Home: NextPage = () => {
     const mousePosition: { x: number; y: number } = useMousePosition();
+
+    React.useEffect(() => {
+        if (localStorage.getItem("id")) {
+            router.push("/forum");
+        }
+    }, []);
+
     return (
         <div className={styles.container}>
             <Head>

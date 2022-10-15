@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import React from "react";
-import { postFileFromServer } from "./utils";
+import { postFileFromServer } from "../misc/utils";
 
 function MyApp({ Component, pageProps }: AppProps) {
     React.useEffect(() => {

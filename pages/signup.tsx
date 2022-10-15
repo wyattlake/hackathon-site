@@ -3,7 +3,8 @@ import { Navbar } from "../components/Navbar";
 import styles from "../styles/Login.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Head from "next/head";
-import { postFileFromServer } from "./utils";
+import { postFileFromServer } from "../misc/utils";
+import router from "next/router";
 
 type Inputs = {
     username: string;
@@ -47,14 +48,13 @@ const SignUp: NextPage = () => {
                             );
                         }
                     );
+                    router.push("/forum");
                 } else {
                     console.log(data);
                     alert("username taken");
                 }
             }
         );
-
-        console.log(data);
     };
 
     return (

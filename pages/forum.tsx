@@ -6,9 +6,10 @@ import { Navbar } from "../components/Navbar";
 import styles from "../styles/Forum.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ParallaxElement } from "../components/ParallaxElement";
-import { postFileFromServer } from "./utils";
+import { postFileFromServer } from "../misc/utils";
 import { useEffect, useState } from "react";
 import React from "react";
+import Link from "next/link";
 
 type Inputs = {
     query: string;
@@ -120,13 +121,17 @@ const Forum: NextPage = () => {
                             </form>
                             {comments}
                         </div>
-                        <div className={styles.postComment}>
-                            <p className={styles.subtitle}>Pose a Question</p>
-                            <p className={styles.helpText}>
-                                Your question will be answered by the Wonder
-                                community.
-                            </p>
-                        </div>
+                        <Link href="/question">
+                            <div className={styles.postComment}>
+                                <p className={styles.subtitle}>
+                                    Pose a Question
+                                </p>
+                                <p className={styles.helpText}>
+                                    Your question will be answered by the Wonder
+                                    community.
+                                </p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </main>
