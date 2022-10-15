@@ -6,6 +6,9 @@ import { Navbar } from "../components/Navbar";
 import styles from "../styles/Forum.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ParallaxElement } from "../components/ParallaxElement";
+import { postFileFromServer } from "./utils";
+import { useEffect, useState } from "react";
+import React from "react";
 
 type Inputs = {
     query: string;
@@ -18,9 +21,70 @@ const Forum: NextPage = () => {
         watch,
         formState: { errors },
     } = useForm<Inputs>();
+
+    const [comments, setComments] = useState(<div></div>);
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
+        postFileFromServer(
+            "https://jakehenryparker.com/Hackathon/hackathon.php",
+            "search=" + encodeURIComponent(data.query),
+            (data: string) => {
+                let parsedData: any = JSON.parse(data);
+                console.log(parsedData);
+
+                setComments(
+                    <div>
+                        {parsedData ? (
+                            parsedData.map((comment: any) => {
+                                let tagsArray = JSON.parse(comment.tags);
+                                return (
+                                    <CommentSmall
+                                        subject={tagsArray[0]}
+                                        author={comment.username}
+                                        title={comment.title}
+                                        likes={comment.votes}
+                                        key={comment.id}
+                                        style={{ marginBottom: 20 }}
+                                    />
+                                );
+                            })
+                        ) : (
+                            <></>
+                        )}
+                    </div>
+                );
+            }
+        );
     };
+
+    React.useEffect(() => {
+        postFileFromServer(
+            "https://jakehenryparker.com/Hackathon/hackathon.php",
+            "pullBurstComments=" + encodeURIComponent(1),
+            (data: string) => {
+                let parsedData: any = JSON.parse(data);
+                console.log(parsedData);
+
+                setComments(
+                    <div>
+                        {parsedData.map((comment: any) => {
+                            let tagsArray = JSON.parse(comment.tags);
+                            return (
+                                <CommentSmall
+                                    subject={tagsArray[0]}
+                                    author={comment.username}
+                                    title={comment.title}
+                                    likes={comment.votes}
+                                    key={comment.id}
+                                    style={{ marginBottom: 20 }}
+                                />
+                            );
+                        })}
+                    </div>
+                );
+            }
+        );
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -54,18 +118,7 @@ const Forum: NextPage = () => {
                                     {...register("query", { required: true })}
                                 />
                             </form>
-                            <CommentSmall
-                                subject="Math"
-                                author="rzcman"
-                                title="Whats the best way to start my essay?"
-                                likes={3}
-                            />
-                            <CommentSmall
-                                subject="Math"
-                                author="rzcman"
-                                title="Whats the best way to start my essay?"
-                                likes={3}
-                            />
+                            {comments}
                         </div>
                         <div className={styles.postComment}>
                             <p className={styles.subtitle}>Pose a Question</p>
