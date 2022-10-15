@@ -1,0 +1,41 @@
+.comment {
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+    border-radius: 15px;
+    border: 1.5px solid #E4D0B2;
+    background: #FFF7EB;
+    width: 60vw;
+}
+
+.comment > p {
+    color: #503453;
+}
+
+.commentAuthor {
+    color: #503453;
+    font-weight: 550;
+}
+
+.authorSection > p {
+    color: #503453;
+    margin: 0px;
+}
+
+.authorSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.commentTitle {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.subjectIcon {
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+}

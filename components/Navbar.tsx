@@ -1,6 +1,6 @@
-import styles from '../styles/Navbar.module.css'
-import Image from 'next/image'
-import { HTMLProps } from 'react';
+import styles from "../styles/Navbar.module.css";
+import Image from "next/image";
+import { HTMLProps } from "react";
 
 type NavbarProps = HTMLProps<HTMLDivElement>;
 
@@ -11,7 +11,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
                 <Image src="/logo.svg" alt="" width={130} height={50} />
             </div>
             <p>SIGN&nbsp;UP</p>
-            <p>CONTACT</p>
+            <p>LOGIN</p>
         </div>
-    )
-}
+    );
+};

@@ -1,39 +1,33 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { CommentSmall } from "../components/CommentSmall";
+import { Navbar } from "../components/Navbar";
+import styles from "../styles/Home.module.css";
 
 const Forum: NextPage = () => {
     return (
         <div className={styles.container}>
             <Head>
                 <title>Wonder</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.svg" />
             </Head>
             <main className={styles.main}>
-                <h1>Forum</h1>
+                <Navbar style={{ position: "absolute", top: 0 }} />
+                <div>
+                    <h1>Forum</h1>
+                </div>
                 <div className="body">
-                    <div className={styles.comment}>
-                        <div className={styles.commentInfo}>
-                            <p>10 likes</p>
-                            <p>4 answers</p>
-                            <p>3 views</p>
-                        </div>
-                        <div className={styles.commentMain}>
-                            <div className={styles.commentContent}>
-                                <h2>defribrillator</h2>
-                                <p>What is the derivative of a derivative???</p>
-                            </div>
-                            <div className={styles.commentProfile}>
-                                <p className={styles.commentAuthor}>Ryan Cheng</p>
-                                <p>2 karma</p>
-                            </div>
-                        </div>
-                    </div>
+                    <CommentSmall
+                        subject="Math"
+                        author="rzcman"
+                        title="Whats the best way to start my essay?"
+                        likes={3}
+                    />
                 </div>
             </main>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
-export default Forum
+export default Forum;
