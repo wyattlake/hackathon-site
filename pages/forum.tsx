@@ -3,9 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+
 const Forum: NextPage = () => {
     return (
         <div className={styles.container}>
+
             <Head>
                 <title>Wonder</title>
                 <link rel="icon" href="/favicon.ico" />

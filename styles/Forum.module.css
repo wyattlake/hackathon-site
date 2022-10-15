@@ -142,3 +142,7 @@
 .commentProfile>* {
   padding-left: 10px;
 }
+
+.circleTimer {
+  z-index: -100;
+}

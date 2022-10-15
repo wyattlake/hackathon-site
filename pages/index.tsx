@@ -2,10 +2,16 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import GameOfPrimes from '../pages/gameofprimes'
+import PrimeLesson from './primeslesson'
 
 const Home: NextPage = () => {
   return (
+    <>
     <div className={styles.container}>
+      
+
+<a href="./primeslesson">Open page in new window</a>
       <Head>
         <title>Wonder</title>
         <link rel="icon" href="/favicon.ico" />
@@ -33,6 +39,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
       </main>
     </div >
+    </>
   )
 }
 
