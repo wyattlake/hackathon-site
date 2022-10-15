@@ -3,9 +3,9 @@
     flex-direction: column;
     padding: 35px;
     border-radius: 15px;
-    border: 1.5px solid #E4D0B2;
-    background: #FFF7EB;
-    width: 60vw;
+    border: 1.5px solid #e4d0b2;
+    background: #fff7eb;
+    width: 100%;
 }
 
 .comment > p {

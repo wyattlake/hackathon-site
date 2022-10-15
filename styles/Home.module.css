@@ -46,8 +46,8 @@
 .topComment {
     padding: 30px;
     border-radius: 15px;
-    border: 1.5px solid #E4D0B2;
-    background: #FFF7EB;
+    border: 1.5px solid #e4d0b2;
+    background: #fff7eb;
     width: 350px;
     margin-right: 30px;
 }
@@ -59,12 +59,18 @@
     margin-right: 30px;
     border-radius: 15px;
     border: 1.5px solid transparent;
-    background: linear-gradient(to right,#E4D0B2, #E4D0B2, transparent, transparent) border-box;
-    -webkit-mask:
-       linear-gradient(#fff 0 0) padding-box, 
-       linear-gradient(#fff 0 0);
+    background: linear-gradient(
+            to right,
+            #e4d0b2,
+            #e4d0b2,
+            transparent,
+            transparent
+        )
+        border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-            mask-composite: exclude;
+    mask-composite: exclude;
 }
 
 .subject {
@@ -84,7 +90,7 @@
 }
 
 .subjectDot1 {
-    background-color: #B1EC65;
+    background-color: #b1ec65;
     width: 10px;
     height: 10px;
     border-radius: 10px;
@@ -93,7 +99,7 @@
 }
 
 .subjectDot2 {
-    background-color: #EBBA48;
+    background-color: #ebba48;
     width: 10px;
     height: 10px;
     border-radius: 10px;
@@ -115,9 +121,8 @@
     margin-left: 0.2em;
 }
 
-.typedText>div>span {
-    background: linear-gradient(to bottom, #BC3556,
-            #EC8D49);
+.typedText > div > span {
+    background: linear-gradient(to bottom, #bc3556, #ec8d49);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
@@ -132,42 +137,42 @@
     align-items: center;
 }
 
-.parallax>.parallaxItem {
+.parallax > .parallaxItem {
     position: absolute;
     border-radius: 100%;
 }
 
-.parallax>.parallaxItem:nth-child(1) {
+.parallax > .parallaxItem:nth-child(1) {
     top: 20%;
     left: -60px;
     z-index: 0;
 }
 
-.parallax>.parallaxItem:nth-child(2) {
+.parallax > .parallaxItem:nth-child(2) {
     bottom: -150px;
     right: -250px;
     z-index: 0;
 }
 
-.parallax>.parallaxItem:nth-child(3) {
+.parallax > .parallaxItem:nth-child(3) {
     top: 100px;
     right: 150px;
     z-index: 0;
 }
 
-.parallax>.parallaxItem:nth-child(4) {
+.parallax > .parallaxItem:nth-child(4) {
     bottom: -330px;
     left: -150px;
     z-index: 0;
 }
 
-.parallax>.parallaxItem:nth-child(5) {
+.parallax > .parallaxItem:nth-child(5) {
     top: 13%;
     left: 40%;
     z-index: 0;
 }
 
-.parallax>.parallaxItem:nth-child(6) {
+.parallax > .parallaxItem:nth-child(6) {
     bottom: 17%;
     left: 30%;
     z-index: 0;
