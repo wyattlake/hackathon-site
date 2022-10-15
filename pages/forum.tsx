@@ -4,9 +4,21 @@ import Image from "next/image";
 import { CommentSmall } from "../components/CommentSmall";
 import { Navbar } from "../components/Navbar";
 import styles from "../styles/Forum.module.css";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+    query: string;
+};
 
 const Forum: NextPage = () => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<Inputs>();
+    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
     return (
         <div className={styles.container}>
             <Head>
@@ -22,6 +34,14 @@ const Forum: NextPage = () => {
                     </div>
                     <div className={styles.commentSection}>
                         <div className={styles.commentList}>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <input
+                                    placeholder="Search here..."
+                                    autoComplete="off"
+                                    className={styles.searchBar}
+                                    {...register("query", { required: true })}
+                                />
+                            </form>
                             <CommentSmall
                                 subject="Math"
                                 author="rzcman"

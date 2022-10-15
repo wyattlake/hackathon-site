@@ -36,6 +36,7 @@
 }
 
 .mainSection {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     width: 70%;
@@ -88,4 +89,35 @@
 .helpText {
     margin-top: 10px;
     line-height: 30px;
+}
+
+.searchBar {
+    width: 100%;
+    border: 1.5px solid #e4d0b2;
+    border-radius: 15px;
+    height: 50px;
+    background-color: #fff7eb;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #503453;
+    font-family: Inter;
+    padding-left: 23px;
+    appearance: none;
+}
+
+.searchBar:focus {
+    outline: 0;
+}
+
+.searchBar::placeholder {
+    color: #503453;
+    opacity: 1;
+}
+
+.searchBar::-ms-input-placeholder {
+    color: #503453;
+}
+
+.searchBar::-ms-input-placeholder {
+    color: #503453;
 }
