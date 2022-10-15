@@ -51,7 +51,7 @@ export const CommentSmall: React.FC<CommentProps> = (props) => {
                             }}
                         ></div>
                         <div className="spacer"></div>
-                        <p>{props.likes} likes</p>
+                        <p>{props.likes} votes</p>
                     </div>
                     <p className={styles.commentTitle}>{props.title}</p>
                 </div>

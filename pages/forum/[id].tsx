@@ -4,25 +4,104 @@ import styles from "../../styles/Forum.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Head from "next/head";
 import { postFileFromServer } from "../../misc/utils";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { CommentSmall } from "../../components/CommentSmall";
-import React from "react";
+import React, { useState } from "react";
 import { type } from "os";
+import useQuery from "../../misc/useQuery";
 
 const CommentLarge: NextPage = () => {
-    const router = useRouter();
-    const { snowflake }: any = router.query;
+    const query: any = useQuery();
+
+    const [commentFull, setCommentFull] = useState(<></>);
+    const [profile, setProfile] = useState(<></>);
+    const [commentList, setCommentList] = useState(<></>);
 
     React.useEffect(() => {
+        if (!query) {
+            return;
+        }
+
+        let focusedComment: any = null;
         postFileFromServer(
             "https://jakehenryparker.com/Hackathon/hackathon.php",
-            "getCommentChain=" + encodeURIComponent(snowflake),
-            (data: string) => {
-                let parsedData: { id: string; karma: string } =
-                    JSON.parse(data);
+            "getCommentChain=" + encodeURIComponent(query.id),
+            (data: any) => {
+                let comments = JSON.parse(data);
+                focusedComment = comments[comments.length - 1];
+
+                console.log(focusedComment);
+
+                setCommentFull(
+                    <div className={styles.commentFull}>
+                        <h2>{focusedComment.title}</h2>
+                        {focusedComment.dentry != null ? (
+                            <p>{focusedComment.dentry}</p>
+                        ) : (
+                            <p>{focusedComment.dentry}</p>
+                        )}
+
+                        <div className={styles.likeButtons}>
+                            <button>Vote</button>
+                            <div>{focusedComment.votes} Votes</div>
+                        </div>
+                    </div>
+                );
+
+                // setComments(
+                //     <CommentSmall
+                //         subject="None"
+                //         author="rzcman"
+                //         title="dsjfklds"
+                //         link=""
+                //         likes={11}
+                //     />
+                // );
+
+                comments.pop();
+                setCommentList(
+                    <>
+                        {comments.map((comment: any) => {
+                            return (
+                                <CommentSmall
+                                    subject="None"
+                                    author={comment.user}
+                                    title={comment.title}
+                                    link=""
+                                    likes={11}
+                                    key={comment.id}
+                                />
+                            );
+                        })}
+                    </>
+                );
+
+                if (focusedComment != null) {
+                    postFileFromServer(
+                        "https://jakehenryparker.com/Hackathon/hackathon.php",
+                        "findUserByID=" +
+                            encodeURIComponent(parseInt(focusedComment.uuid)),
+                        (data: any) => {
+                            let user = JSON.parse(data);
+
+                            setProfile(
+                                <div className={styles.postComment}>
+                                    <p className={styles.subtitle}>
+                                        {user.username}
+                                    </p>
+                                    <p className={styles.helpText}>
+                                        {user.karma} karma
+                                        <br></br>
+                                        Joined in {user.created.substring(0, 4)}
+                                    </p>
+                                </div>
+                            );
+                        }
+                    );
+                }
             }
         );
-    }, []);
+    }, [query]);
 
     return (
         <div className={styles.container}>
@@ -35,30 +114,11 @@ const CommentLarge: NextPage = () => {
                 <div className={styles.mainSection}>
                     <div className={styles.commentSection}>
                         <div className={styles.commentList}>
-                            <div className={styles.commentFull}>
-                                <h2>Title</h2>
-                                <p>Text</p>
-                                <div className={styles.likeButtons}>
-                                    <button>Like</button>
-                                    <div>11 likes</div>
-                                </div>
-                            </div>
-                            <CommentSmall
-                                subject="None"
-                                author="rzcman"
-                                title="dsjfklds"
-                                link=""
-                                likes={11}
-                            />
+                            {commentFull}
+                            {commentList}
                         </div>
                         <div className={styles.authorSection}>
-                            <div className={styles.postComment}>
-                                <p className={styles.subtitle}>rzcman</p>
-                                <p className={styles.helpText}>
-                                    200 karma<br></br> Account created 1 year
-                                    ago
-                                </p>
-                            </div>
+                            {profile}
                             <button>Add Friend</button>
                         </div>
                     </div>

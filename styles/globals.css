@@ -24,3 +24,11 @@ a {
 .spacer {
     flex-grow: 1;
 }
+
+button {
+    background-color: #f1e2cb;
+    border-radius: 8px;
+    border: 0px;
+    padding: 10px 25px;
+    color: #98866b;
+}
