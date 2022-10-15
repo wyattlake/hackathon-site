@@ -31,7 +31,6 @@ const Forum: NextPage = () => {
             "search=" + encodeURIComponent(data.query),
             (data: string) => {
                 let parsedData: any = JSON.parse(data);
-                console.log(parsedData);
 
                 setComments(
                     <div>
@@ -45,6 +44,7 @@ const Forum: NextPage = () => {
                                         title={comment.title}
                                         likes={comment.votes}
                                         key={comment.id}
+                                        link={"/forum/" + comment.snowflake}
                                         style={{ marginBottom: 20 }}
                                     />
                                 );
@@ -64,7 +64,6 @@ const Forum: NextPage = () => {
             "pullBurstComments=" + encodeURIComponent(1),
             (data: string) => {
                 let parsedData: any = JSON.parse(data);
-                console.log(parsedData);
 
                 setComments(
                     <div>
@@ -77,6 +76,7 @@ const Forum: NextPage = () => {
                                     title={comment.title}
                                     likes={comment.votes}
                                     key={comment.id}
+                                    link={"/forum/" + comment.snowflake}
                                     style={{ marginBottom: 20 }}
                                 />
                             );

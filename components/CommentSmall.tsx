@@ -1,12 +1,21 @@
 import styles from "../styles/CommentSmall.module.css";
 import Image from "next/image";
 import { HTMLProps } from "react";
+import Link from "next/link";
 
 type CommentProps = HTMLProps<HTMLDivElement> & {
-    subject: "Math" | "History" | "English" | "Science" | "Art" | "Language";
+    subject:
+        | "Math"
+        | "History"
+        | "English"
+        | "Science"
+        | "Art"
+        | "Language"
+        | "None";
     author: string;
     title: string;
     likes: number;
+    link: string;
 };
 
 const getIconColor = (subject: String) => {
@@ -23,22 +32,45 @@ const getIconColor = (subject: String) => {
             return "#54A4EE";
         case "Language":
             return "#F687BC";
+        case "None":
+            return "FFF7EB";
     }
 };
 
 export const CommentSmall: React.FC<CommentProps> = (props) => {
-    return (
-        <div {...props} className={styles.comment}>
-            <div className={styles.authorSection}>
-                <p className={styles.commentAuthor}>{props.author}</p>
-                <div
-                    className={styles.subjectIcon}
-                    style={{ backgroundColor: getIconColor(props.subject) }}
-                ></div>
-                <div className="spacer"></div>
-                <p>{props.likes} likes</p>
+    if (props.link != "") {
+        return (
+            <Link href={props.link}>
+                <div {...props} className={styles.comment}>
+                    <div className={styles.authorSection}>
+                        <p className={styles.commentAuthor}>{props.author}</p>
+                        <div
+                            className={styles.subjectIcon}
+                            style={{
+                                backgroundColor: getIconColor(props.subject),
+                            }}
+                        ></div>
+                        <div className="spacer"></div>
+                        <p>{props.likes} likes</p>
+                    </div>
+                    <p className={styles.commentTitle}>{props.title}</p>
+                </div>
+            </Link>
+        );
+    } else {
+        return (
+            <div {...props} className={styles.comment}>
+                <div className={styles.authorSection}>
+                    <p className={styles.commentAuthor}>{props.author}</p>
+                    <div
+                        className={styles.subjectIcon}
+                        style={{ backgroundColor: getIconColor(props.subject) }}
+                    ></div>
+                    <div className="spacer"></div>
+                    <p>{props.likes} likes</p>
+                </div>
+                <p className={styles.commentTitle}>{props.title}</p>
             </div>
-            <p className={styles.commentTitle}>{props.title}</p>
-        </div>
-    );
+        );
+    }
 };

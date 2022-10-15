@@ -50,7 +50,6 @@ const SignUp: NextPage = () => {
                     );
                     router.push("/forum");
                 } else {
-                    console.log(data);
                     alert("username taken");
                 }
             }

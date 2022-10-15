@@ -121,3 +121,23 @@
 .searchBar::-ms-input-placeholder {
     color: #503453;
 }
+
+.commentFull {
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+    border-radius: 15px;
+    border: 1.5px solid #e4d0b2;
+    background: #fff7eb;
+    width: 100%;
+}
+
+.likeButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.likeButtons > * {
+    margin-right: 10px;
+}

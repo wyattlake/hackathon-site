@@ -9,7 +9,6 @@ type NavbarProps = HTMLProps<HTMLDivElement>;
 export const Navbar: React.FC<NavbarProps> = (props) => {
     const getHref = () => {
         if (typeof window !== "undefined") {
-            console.log("hello", localStorage.getItem("id"));
             return localStorage.getItem("id") ? "/forum" : "/";
         } else {
             return "/";
