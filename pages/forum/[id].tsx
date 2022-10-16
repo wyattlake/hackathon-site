@@ -1,14 +1,12 @@
 import type { NextPage } from "next";
 import { Navbar } from "../../components/Navbar";
-import styles from "../../styles/Forum.module.css";
-import { useForm, SubmitHandler } from "react-hook-form";
+import styles from "../../styles/CommentFull.module.css";
 import Head from "next/head";
 import { postFileFromServer } from "../../misc/utils";
-import { useRouter } from "next/router";
 import { CommentSmall } from "../../components/CommentSmall";
 import React, { useState } from "react";
-import { type } from "os";
 import useQuery from "../../misc/useQuery";
+import Link from "next/link";
 
 const CommentLarge: NextPage = () => {
     const query: any = useQuery();
@@ -16,6 +14,7 @@ const CommentLarge: NextPage = () => {
     const [commentFull, setCommentFull] = useState(<></>);
     const [profile, setProfile] = useState(<></>);
     const [commentList, setCommentList] = useState(<></>);
+    const [commentId, setCommentId] = useState(-1);
 
     React.useEffect(() => {
         if (!query) {
@@ -30,7 +29,7 @@ const CommentLarge: NextPage = () => {
                 let comments = JSON.parse(data);
                 focusedComment = comments[comments.length - 1];
 
-                console.log(focusedComment);
+                setCommentId(focusedComment.id);
 
                 setCommentFull(
                     <div className={styles.commentFull}>
@@ -38,25 +37,21 @@ const CommentLarge: NextPage = () => {
                         {focusedComment.dentry != null ? (
                             <p>{focusedComment.dentry}</p>
                         ) : (
-                            <p>{focusedComment.dentry}</p>
+                            <></>
                         )}
 
                         <div className={styles.likeButtons}>
                             <button>Vote</button>
-                            <div>{focusedComment.votes} Votes</div>
+                            <div className={styles.voteCount}>
+                                {focusedComment.votes} Votes
+                            </div>
+                            <div className="spacer"></div>
+                            <Link href={"/question/" + commentId}>
+                                <button>Comment</button>
+                            </Link>
                         </div>
                     </div>
                 );
-
-                // setComments(
-                //     <CommentSmall
-                //         subject="None"
-                //         author="rzcman"
-                //         title="dsjfklds"
-                //         link=""
-                //         likes={11}
-                //     />
-                // );
 
                 comments.pop();
                 setCommentList(
@@ -85,7 +80,7 @@ const CommentLarge: NextPage = () => {
                             let user = JSON.parse(data);
 
                             setProfile(
-                                <div className={styles.postComment}>
+                                <div className={styles.profile}>
                                     <p className={styles.subtitle}>
                                         {user.username}
                                     </p>
@@ -109,21 +104,25 @@ const CommentLarge: NextPage = () => {
                 <title>Wonder</title>
                 <link rel="icon" href="/favicon.svg" />
             </Head>
-            <Navbar />
-            <div className={styles.main}>
+            <main className={styles.main}>
+                <Navbar style={{ position: "absolute", top: 0 }} />
+                <div
+                    style={{
+                        position: "absolute",
+                        bottom: -250,
+                        right: -100,
+                    }}
+                ></div>
                 <div className={styles.mainSection}>
                     <div className={styles.commentSection}>
                         <div className={styles.commentList}>
                             {commentFull}
                             {commentList}
                         </div>
-                        <div className={styles.authorSection}>
-                            {profile}
-                            <button>Add Friend</button>
-                        </div>
+                        <Link href="/question">{profile}</Link>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 };

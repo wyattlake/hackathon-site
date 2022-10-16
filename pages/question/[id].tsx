@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
-import { Navbar } from "../components/Navbar";
-import styles from "../styles/Post.module.css";
+import { Navbar } from "../../components/Navbar";
+import styles from "../../styles/Post.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Head from "next/head";
-import { postFileFromServer } from "../misc/utils";
+import { postFileFromServer } from "../../misc/utils";
 import router from "next/router";
 
 type Inputs = {
