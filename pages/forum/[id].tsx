@@ -14,7 +14,7 @@ const CommentLarge: NextPage = () => {
     const [commentFull, setCommentFull] = useState(<></>);
     const [profile, setProfile] = useState(<></>);
     const [commentList, setCommentList] = useState(<></>);
-    const [commentId, setCommentId] = useState(-1);
+    const [commentId, setCommentId] = useState(0);
 
     React.useEffect(() => {
         if (!query) {
@@ -29,6 +29,7 @@ const CommentLarge: NextPage = () => {
                 let comments = JSON.parse(data);
                 focusedComment = comments[comments.length - 1];
 
+                console.log(focusedComment.id);
                 setCommentId(focusedComment.id);
 
                 setCommentFull(

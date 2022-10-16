@@ -35,12 +35,14 @@ const Login: NextPage = () => {
             "https://jakehenryparker.com/Hackathon/hackathon.php",
             "login=" + encodeURIComponent(jsonAccount),
             (data: string) => {
-                let parsedData: { id: string; karma: string } =
-                    JSON.parse(data);
-                localStorage.setItem("id", parsedData.id);
-                localStorage.setItem("karma", parsedData.karma);
-                localStorage.setItem("username", objAccount.username);
-                localStorage.setItem("password", objAccount.password);
+                if (data != null) {
+                    let parsedData: { id: string; karma: string } =
+                        JSON.parse(data);
+                    localStorage.setItem("id", parsedData.id);
+                    localStorage.setItem("karma", parsedData.karma);
+                    localStorage.setItem("username", objAccount.username);
+                    localStorage.setItem("password", objAccount.password);
+                }
             }
         );
 
@@ -55,7 +57,7 @@ const Login: NextPage = () => {
             </Head>
             <Navbar />
             <main>
-            <div className={styles.parallax}>
+                <div className={styles.parallax}>
                     <ParallaxElement
                         image={
                             <Image
@@ -128,32 +130,38 @@ const Login: NextPage = () => {
                         sensitivity={2}
                         mousePosition={mousePosition}
                     />
+                </div>
+                <div className={styles.inputfields}>
+                    <div className={styles.leftjustified}>
+                        <h1 className={styles.hook}>Login</h1>
                     </div>
-            <div className={styles.inputfields}>
-                <div className={styles.leftjustified}><h1 className={styles.hook}>Login</h1></div>
 
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className={styles.loginForm}
-                >
-                    <input className={styles.textinput}
-                        placeholder="Username"
-                        {...register("username", { required: true })}
-                    />
-                    <input className={styles.textinput}
-                        placeholder="Password"
-                        {...register("password", { required: true })}
-                    />
-                    {errors.password && <span> This field is required</span>}
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className={styles.loginForm}
+                    >
+                        <input
+                            className={styles.textinput}
+                            placeholder="Username"
+                            {...register("username", { required: true })}
+                        />
+                        <input
+                            className={styles.textinput}
+                            placeholder="Password"
+                            {...register("password", { required: true })}
+                        />
+                        {errors.password && (
+                            <span> This field is required</span>
+                        )}
 
-                    <div className={styles.submitbutton}><button type="submit">Submit</button></div>
-                </form>
-            </div>
-        </main>
+                        <div className={styles.submitbutton}>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
         </div>
-        
     );
-    
 };
 
 const useMousePosition = () => {
