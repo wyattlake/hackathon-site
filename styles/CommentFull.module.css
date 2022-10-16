@@ -153,7 +153,8 @@
     background: #fff7eb;
     overflow: break-word;
     overflow-wrap: break-word;
-    width: 80%;
+    width: 100%;
+    min-width: 650px;
 }
 
 .commentFull > h2 {
@@ -174,6 +175,7 @@
     height: 25%;
     margin-left: -100px;
 }
+
 .friendButton {
     margin-left: 5px;
     margin-top: 10px;
@@ -190,4 +192,8 @@
     border-radius: 8px;
     border: 1.5px solid #e4d0b2;
     color: #98866b;
+}
+
+.profile {
+    margin-left: 20px;
 }
